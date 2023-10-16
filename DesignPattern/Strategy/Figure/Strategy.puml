@@ -1,0 +1,55 @@
+@startuml strategy
+package "Client" <<Frame>> {
+    class AbstractDuck {
+        -IFlyBehavior  _flyBehavior
+        -IQuackBehavior _quackBehavior
+        +AbstractDuck(IFlyBehavior, IQuackBehavior)
+        {abstract} +void Display()
+        +void Fly()
+        +void Quack()
+    }
+    class MallardDuck {
+        +void Display()
+    }
+    class RubberDuck {
+        +void Display()
+    }
+}
+
+
+package "Fly Behavior" <<Frame>> {
+    interface IFlyBehavior {
+        void Fly()
+    }
+    class FlyNoWay {
+        +void Fly()
+    }
+    class FlyWithWings {
+        +void Fly()
+    }
+}
+
+package "Quack Behavior" <<Frame>> {
+    interface IQuackBehavior {
+        void Quack()
+    }
+    class Quack {
+        +void Quack()
+    }
+    class Squeak {
+        +void Quack()
+    }
+}
+
+AbstractDuck <|-- MallardDuck
+AbstractDuck <|-- RubberDuck
+
+IFlyBehavior <|.. FlyNoWay
+IFlyBehavior <|.. FlyWithWings
+
+IQuackBehavior <|.. Quack
+IQuackBehavior <|.. Squeak
+
+IFlyBehavior *-left- AbstractDuck
+IQuackBehavior *-left- AbstractDuck
+@enduml
