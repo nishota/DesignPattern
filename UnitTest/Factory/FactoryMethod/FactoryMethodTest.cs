@@ -1,5 +1,4 @@
 using DesignPattern.Factory.FactoryMethod;
-using Xunit.Sdk;
 
 namespace UnitTest.Factory.FactoryMethod;
 
@@ -16,7 +15,7 @@ public class FactoryMethodTest
         var jpy = Money.CreateJPY(100);
 
         jpy.Amount.Is(100);
-        jpy.Currency.Is("JPY");
+        jpy.Currency.Is(nameof(JPY));
     }
 
     [Fact]
@@ -25,7 +24,7 @@ public class FactoryMethodTest
         var usd = Money.CreateUSD(1);
 
         usd.Amount.Is(1);
-        usd.Currency.Is("USD");
+        usd.Currency.Is(nameof(USD));
     }
 
     [Theory]
